@@ -26,12 +26,18 @@ def split_train_valid():
 		print(X_valid.shape,y_valid.shape)
 	return X_train,y_train,X_valid,y_valid
 
-def save_csvs(target_dir='data/prep_data/'):
+def save_csvs(target_dir,no_valid=False):
 	helpers.clear_folder(target_dir)
-	X_train,y_train,X_valid,y_valid = split_train_valid()
-	X_test, y_test = load_orig_data(split='test')
-	data = {'train':(X_train,y_train),'valid':(X_valid,y_valid),'test':(X_test,y_test)}
-	for split in ['train','valid','test']:
+	if no_valid:
+		X_train, y_train = load_orig_data(split='train')
+		X_test, y_test = load_orig_data(split='test')
+		data = {'train':(X_train,y_train),'test':(X_test,y_test)}
+	else:
+		X_train,y_train,X_valid,y_valid = split_train_valid()
+		X_test, y_test = load_orig_data(split='test')
+		data = {'train':(X_train,y_train),'test':(X_test,y_test),'valid':(X_valid,y_valid)}
+	
+	for split in data.keys():
 		X,y = data[split]
 		X.to_csv('%s%s_X.csv'%(target_dir,split),index=False)
 		y.to_csv('%s%s_y.csv'%(target_dir,split),index=False)
@@ -42,4 +48,6 @@ def save_csvs(target_dir='data/prep_data/'):
 if __name__ == '__main__':
 	# for split in ['train','test']:
 		# load_orig_data(split)
-	save_csvs()
+		
+	save_csvs(target_dir='data/prep_data/',no_valid=False)
+	save_csvs(target_dir='data/prep_orig_data/',no_valid=True)
