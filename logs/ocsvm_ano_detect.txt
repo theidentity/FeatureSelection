@@ -1,0 +1,14 @@
+cm [[7841 7950]
+ [ 107  184]]
+f1 0.04367952522255193
+rep               precision    recall  f1-score   support
+
+           0       0.99      0.50      0.66     15791
+           1       0.02      0.63      0.04       291
+
+   micro avg       0.50      0.50      0.50     16082
+   macro avg       0.50      0.56      0.35     16082
+weighted avg       0.97      0.50      0.65     16082
+
+auc 0.6062868905490338
+name ocsvm_ano_detect

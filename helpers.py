@@ -2,6 +2,10 @@ import os
 import shutil
 import itertools
 from tqdm import tqdm
+import numpy as np
+
+from multiprocessing import Pool,cpu_count
+from sklearn.utils import class_weight
 
 
 def get_cart_prod(*lists):
@@ -25,3 +29,14 @@ def get_count(path):
 		count = sum([len(f) for r, d, f in os.walk(root)])
 		print(root, ':', count)
 
+def calc_class_wts(y):
+    return class_weight.compute_class_weight(class_weight='balanced', classes=np.unique(y), y=y)
+
+def unique(arr):
+    items,counts = np.unique(arr,return_counts=True)
+    print(['%s : %d'%(x,y) for x,y in zip(items,counts)])
+    return items,counts
+
+def create_folder(path):
+	if not os.path.exists(path):
+		clear_folder(path)

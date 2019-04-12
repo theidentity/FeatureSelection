@@ -25,3 +25,19 @@ Feature Selection for improving predictive power
 	* Undersampling : `cluster` or `near_miss`
 	* Oversampling : `smote` or `adasyn`
 	* Combined : `smoteenn` or `smotetomek`
+
+### Anomaly Detection
+In 4_anomaly_detection, set data_src, method of anomaly detection and seed if requred
+```python
+	
+	ano = AnomalyDetection(data_src='data/orig/',method='iso_forest',normal_class=0, seed=42)
+	ano.train()
+	ano.evaluate()
+
+	ano = AnomalyDetection(data_src='data/orig/',method='ocsvm',normal_class=0, seed=42)
+	ano.train()
+	ano.evaluate()
+```
+* Methods
+	* Isolation forest with 1% contamination
+	* One Class SVM with RBF kernel

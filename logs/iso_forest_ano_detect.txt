@@ -1,0 +1,14 @@
+name iso_forest_ano_detect
+rep               precision    recall  f1-score   support
+
+           0       0.99      0.91      0.95     15791
+           1       0.10      0.53      0.17       291
+
+   micro avg       0.90      0.90      0.90     16082
+   macro avg       0.54      0.72      0.56     16082
+weighted avg       0.97      0.90      0.93     16082
+
+f1 0.16693591814754982
+cm [[14380  1411]
+ [  136   155]]
+auc 0.812191511063438
