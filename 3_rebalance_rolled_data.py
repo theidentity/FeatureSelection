@@ -32,10 +32,13 @@ class DataBalancer():
 	def get_samplers(self,method):
 		samplers = {
 		'none':None,
+		# oversampling
 		'smote':SMOTE(random_state=self.seed,n_jobs=32),
 		'adasyn':ADASYN(random_state=self.seed,n_jobs=32),
+		# undersampling
 		'cluser':ClusterCentroids(random_state=self.seed,n_jobs=32),
 		'near_miss':NearMiss(random_state=self.seed,n_jobs=32),
+		# combined
 		'smoteenn':SMOTEENN(random_state=self.seed,smote=SMOTE(random_state=self.seed,n_jobs=16),enn=EditedNearestNeighbours(n_jobs=16)),
 		'smotetomek':SMOTETomek(random_state=self.seed,smote=SMOTE(random_state=self.seed,n_jobs=16),tomek=TomekLinks(n_jobs=16)),
 		}
