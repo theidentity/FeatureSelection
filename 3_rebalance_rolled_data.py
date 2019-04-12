@@ -10,9 +10,9 @@ from imblearn.under_sampling import TomekLinks
 from imblearn.under_sampling import EditedNearestNeighbours
 
 class DataBalancer():
-	def __init__(self,seed=42):
-		self.data_src = 'data/windowed/'
-		self.dst = 'data/windowed_balanced/'
+	def __init__(self,data_src, dst_dir, seed=42):
+		self.data_src = data_src
+		self.dst = dst_dir
 		self.verbose = 1
 
 		self.columns = None
@@ -60,7 +60,7 @@ class DataBalancer():
 		data = np.hstack((X,y))
 		cols = np.hstack([self.columns,'failure'])
 		df = pd.DataFrame(data=data,columns=cols)
-		df.to_csv('%s%s.csv'%(self.dst,name))
+		df.to_csv('%s%s.csv'%(self.dst,name),index=False)
 		print(df.shape)
 		helpers.unique(df['failure'])
 
@@ -69,6 +69,6 @@ class DataBalancer():
 		self.save_data(X,y,name='%s_%s'%(method,split))
 
 if __name__ == '__main__':
-	bal = DataBalancer(seed=42)
+	bal = DataBalancer(data_src='data/windowed/',dst_dir='data/windowed_balanced/',seed=42)
 	bal.rebalance_data(split='train',method='smotetomek')
 	bal.rebalance_data(split='test',method='none')

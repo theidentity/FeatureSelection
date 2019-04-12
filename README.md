@@ -5,7 +5,7 @@ Feature Selection for improving predictive power
 ### Dependencies
 * Runs on Python3
 * Install all dependencies.
-`pip3 install scikit-learn mlxtend joblib pandas numpy`
+`pip3 install scikit-learn mlxtend joblib pandas numpy imbalanced-learn`
 
 ### Quickstart
 * Place original data in `data/orig/`
